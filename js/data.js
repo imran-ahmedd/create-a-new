@@ -5,7 +5,7 @@ RJF.data = {
   brand: {
     name: "রূপসা জনকল্যাণ ফাউন্ডেশন",
     sub: "RUPSHA JANAKALYAN FOUNDATION",
-    logo: "images/logo.png" // ব্যানার লোগো এই নামে/পাথে যোগ করুন
+    logo: "Https://rupshajf.vercel.app/icons/logo.webp" // ব্যানার লোগো এই নামে/পাথে যোগ করুন
   },
 
   nav: [
@@ -21,10 +21,10 @@ RJF.data = {
     desc: "শিক্ষা, স্বাস্থ্য, ত্রাণ ও দক্ষতা উন্নয়নের মাধ্যমে আমরা গড়ে তুলছি একটি স্বনির্ভর সমাজ।",
     // ছবিগুলো images/ ফোল্ডারে এই নামে যোগ করলেই ক্যারোজেলে দেখা যাবে, না থাকলে আইকন-প্লেসহোল্ডার দেখাবে
     slides: [
-      { src: "images/activity-1.jpg", alt: "শিক্ষা কার্যক্রম", icon: "book", label: "শিক্ষা কার্যক্রমের ছবি এখানে যোগ করুন" },
-      { src: "images/activity-2.jpg", alt: "স্বাস্থ্যসেবা ক্যাম্প", icon: "heart", label: "স্বাস্থ্যসেবা কার্যক্রমের ছবি এখানে যোগ করুন" },
-      { src: "images/activity-3.jpg", alt: "ত্রাণ বিতরণ", icon: "hand", label: "ত্রাণ বিতরণ কার্যক্রমের ছবি এখানে যোগ করুন" },
-      { src: "images/activity-4.jpg", alt: "দক্ষতা প্রশিক্ষণ", icon: "tool", label: "প্রশিক্ষণ কার্যক্রমের ছবি এখানে যোগ করুন" },
+      { src: "Https://rupshajf.vercel.app/gallery/win-team.webp", alt: "শিক্ষা কার্যক্রম", icon: "book", label: "শিক্ষা কার্যক্রমের ছবি এখানে যোগ করুন" },
+      { src: "Https://rupshajf.vercel.app/gallery/imran.webp", alt: "স্বাস্থ্যসেবা ক্যাম্প", icon: "heart", label: "স্বাস্থ্যসেবা কার্যক্রমের ছবি এখানে যোগ করুন" },
+      { src: "https://rupshajf.vercel.app/gallery/lost-team.webp", alt: "ত্রাণ বিতরণ", icon: "hand", label: "ত্রাণ বিতরণ কার্যক্রমের ছবি এখানে যোগ করুন" },
+      { src: "Https://rupshajf.vercel.app/gallery/sumon.webp", alt: "দক্ষতা প্রশিক্ষণ", icon: "tool", label: "প্রশিক্ষণ কার্যক্রমের ছবি এখানে যোগ করুন" },
       { src: "images/activity-5.jpg", alt: "বৃক্ষরোপণ কার্যক্রম", icon: "leaf", label: "বৃক্ষরোপণ কার্যক্রমের ছবি এখানে যোগ করুন" }
     ]
   },
