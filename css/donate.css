@@ -583,7 +583,7 @@ a:focus-visible,
    Toast
    ========================================================================== */
 
-#toast {
+#donateToast {
   visibility: hidden;
   position: fixed;
   bottom: 26px;
@@ -598,7 +598,7 @@ a:focus-visible,
   box-shadow: var(--shadow-soft);
 }
 
-.donate-page #toast.show { visibility: visible; animation: toast-pop 0.25s ease; }
+.donate-page #donateToast.show { visibility: visible; animation: toast-pop 0.25s ease; }
 
 @keyframes toast-pop {
   from { opacity: 0; transform: translate(-50%, 8px); }
