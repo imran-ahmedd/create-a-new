@@ -1,22 +1,23 @@
 /* ==========================================================================
    স্থায়ী কমিটি ও সাধারণ সদস্য পেজ — #/member রুট
-   .member-page এর ভেতরেই সব স্টাইল আটকে রাখা হয়েছে, যাতে বাকি সাইটের
-   ডিজাইন (variables.css / base.css) কোনোভাবেই প্রভাবিত না হয়
+   .member-page এর ভেতরেই সব স্টাইল আটকে রাখা হয়েছে, কিন্তু রঙ ও টাইপোগ্রাফি
+   ইচ্ছাকৃতভাবে মূল হোমপেজের ডিজাইন-ভাষা (variables.css) থেকে নেওয়া, যাতে
+   মেম্বার পেজটাও একই সাইটের অংশ মনে হয়
    ========================================================================== */
 
 .member-page {
-  --m-bg: #0a0f1e;
-  --m-bg-soft: #0f172a;
-  --m-surface: #131c31;
-  --m-glass-bg: rgba(255, 255, 255, 0.05);
-  --m-glass-hover: rgba(255, 255, 255, 0.1);
-  --m-glass-border: rgba(255, 255, 255, 0.1);
-  --m-accent: #00d2ff;
-  --m-accent-2: #3a7bd5;
-  --m-success: #10b981;
-  --m-warning: #f59e0b;
-  --m-text-main: #ffffff;
-  --m-text-sub: #94a3b8;
+  --m-bg: var(--rice);
+  --m-bg-soft: var(--rice-2);
+  --m-surface: var(--white);
+  --m-glass-bg: rgba(14, 59, 54, 0.05);
+  --m-glass-hover: rgba(14, 59, 54, 0.1);
+  --m-glass-border: rgba(14, 59, 54, 0.14);
+  --m-accent: var(--clay);
+  --m-accent-2: var(--turmeric);
+  --m-success: var(--moss);
+  --m-warning: var(--clay-dark);
+  --m-text-main: var(--river-deep);
+  --m-text-sub: #5c655f;
   --m-radius-lg: 24px;
   --m-radius-md: 16px;
   --m-transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
@@ -26,11 +27,11 @@
   position: relative;
   margin: 0 auto;
   max-width: var(--m-max-width);
-  padding: 26px 20px 60px;
+  padding: 130px 20px 60px;
   background-color: var(--m-bg);
   background-image:
-    radial-gradient(circle at 15% 10%, rgba(0, 210, 255, 0.08), transparent 40%),
-    radial-gradient(circle at 85% 30%, rgba(58, 123, 213, 0.10), transparent 45%);
+    radial-gradient(circle at 15% 10%, rgba(193, 99, 47, 0.08), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(227, 167, 62, 0.12), transparent 45%);
   border-radius: var(--m-radius-lg);
   font-family: 'Hind Siliguri', sans-serif;
   color: var(--m-text-main);
@@ -39,35 +40,36 @@
 }
 
 .member-page * { box-sizing: border-box; }
+.member-page h1, .member-page h2, .member-page h3, .member-page h4 { font-family: 'Baloo Da 2', 'Hind Siliguri', sans-serif; }
 .member-page h1, .member-page h2, .member-page h3, .member-page h4, .member-page p { margin: 0; }
 .member-page a { color: inherit; text-decoration: none; }
 .member-page button { font-family: inherit; }
 .member-page img { max-width: 100%; display: block; }
 
-/* ---------- "মূল পাতায় ফিরুন" — সুন্দর বক্স আকারে ---------- */
+/* ---------- "মূল পাতায় ফিরুন" — ফিক্সড ন্যাভবারের নিচে যথেষ্ট জায়গা রেখে ---------- */
 .member-page .member-back-box {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 22px;
+  margin-bottom: 26px;
   padding: 10px 18px;
-  background: var(--m-glass-bg);
+  background: var(--white);
   border: 1px solid var(--m-glass-border);
   border-radius: 100px;
   font-family: 'Work Sans', 'Hind Siliguri', sans-serif;
   font-size: 0.88rem;
   font-weight: 600;
   color: var(--m-text-main);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 18px rgba(14, 59, 54, 0.08);
   transition: var(--m-transition);
 }
 .member-page .member-back-box svg { width: 16px; height: 16px; flex-shrink: 0; }
 .member-page .member-back-box:hover {
   background: var(--m-accent);
-  color: #04121c;
+  color: var(--white);
   border-color: var(--m-accent);
   transform: translateX(-3px);
-  box-shadow: 0 8px 20px rgba(0, 210, 255, 0.25);
+  box-shadow: 0 8px 20px rgba(193, 99, 47, 0.25);
 }
 
 /* ---------- হিরো সেকশন ---------- */
@@ -75,7 +77,7 @@
   width: 100%;
   padding: 46px 24px;
   margin-bottom: 20px;
-  background: linear-gradient(-45deg, #0a0f1e, #142244, #0a0f1e, #1c3a6b);
+  background: linear-gradient(-45deg, var(--river-deep), var(--river-deep-2), var(--river-deep), var(--clay-dark));
   background-size: 400% 400%;
   animation: memberGradientBG 10s ease infinite;
   border-radius: var(--m-radius-lg);
@@ -86,7 +88,7 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 20px 50px rgba(14, 59, 46, 0.28);
   text-align: center;
 }
 .member-page .banner-content { position: relative; z-index: 2; }
@@ -94,9 +96,9 @@
   display: inline-block;
   font-size: 0.8rem;
   letter-spacing: 2px;
-  color: var(--m-accent);
-  background: rgba(0, 210, 255, 0.1);
-  border: 1px solid rgba(0, 210, 255, 0.25);
+  color: var(--turmeric);
+  background: rgba(227, 167, 62, 0.12);
+  border: 1px solid rgba(227, 167, 62, 0.3);
   padding: 5px 16px;
   border-radius: 50px;
   margin-bottom: 14px;
@@ -104,20 +106,20 @@
   text-transform: uppercase;
 }
 .member-page .banner-content h1 {
-  color: var(--m-text-main);
+  color: var(--white);
   font-size: clamp(1.6rem, 4vw, 2.6rem);
   font-weight: 700;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.35);
   letter-spacing: 0.3px;
 }
 .member-page .banner-content p {
   margin-top: 8px;
-  color: var(--m-text-sub);
+  color: rgba(255, 255, 255, 0.82);
   font-size: clamp(0.95rem, 2vw, 1.1rem);
 }
 .member-page .particles .particle {
   position: absolute;
-  background: rgba(0, 210, 255, 0.2);
+  background: rgba(227, 167, 62, 0.25);
   border-radius: 50%;
   animation: memberFloatParticle 6s infinite ease-in-out;
 }
@@ -139,21 +141,20 @@
 /* ---------- লাইভ ভিজিটর কাউন্টার ---------- */
 .member-page .live-counter-wrapper { display: flex; justify-content: center; padding: 22px 0 6px; }
 .member-page .live-widget {
-  background: rgba(30, 41, 59, 0.9);
-  backdrop-filter: blur(10px);
+  background: var(--white);
   border: 1px solid var(--m-glass-border);
   padding: 12px 25px;
   border-radius: 50px;
   display: flex;
   align-items: center;
   gap: 15px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 24px rgba(14, 59, 54, 0.1);
   transition: var(--m-transition);
 }
 .member-page .live-widget:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(16, 185, 129, 0.2);
-  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 12px 28px rgba(122, 155, 110, 0.25);
+  border-color: rgba(122, 155, 110, 0.4);
 }
 .member-page .live-indicator { position: relative; width: 12px; height: 12px; }
 .member-page .pulse {
@@ -165,22 +166,22 @@
   animation: memberPulseGlow 1.5s infinite;
 }
 @keyframes memberPulseGlow {
-  0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-  70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
-  100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(122, 155, 110, 0.7); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(122, 155, 110, 0); }
+  100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(122, 155, 110, 0); }
 }
-.member-page .live-text { color: #cbd5e1; font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.member-page .live-text { color: var(--m-text-sub); font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
 .member-page .live-text i { color: var(--m-accent); }
 .member-page .live-count-box {
-  background: linear-gradient(135deg, var(--m-success), #059669);
-  color: white;
+  background: linear-gradient(135deg, var(--moss), var(--river-deep));
+  color: var(--white);
   padding: 3px 15px;
   border-radius: 20px;
   font-size: 17px;
   font-weight: bold;
   min-width: 25px;
   text-align: center;
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 15px rgba(122, 155, 110, 0.35);
 }
 .member-page .pop-anim { animation: memberPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 @keyframes memberPop {
@@ -190,17 +191,18 @@
 /* ---------- স্ট্যাটস ড্যাশবোর্ড ---------- */
 .member-page .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 24px 0 34px; }
 .member-page .stat-card {
-  background: var(--m-glass-bg);
+  background: var(--white);
   border: 1px solid var(--m-glass-border);
-  backdrop-filter: blur(12px);
+  border-top: 3px solid var(--clay);
   border-radius: var(--m-radius-md);
   padding: 20px 16px;
   text-align: center;
+  box-shadow: 0 6px 18px rgba(14, 59, 54, 0.06);
   transition: var(--m-transition);
 }
-.member-page .stat-card:hover { transform: translateY(-4px); border-color: rgba(0, 210, 255, 0.35); box-shadow: 0 12px 24px rgba(0, 210, 255, 0.12); }
+.member-page .stat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(14, 59, 54, 0.12); }
 .member-page .stat-card .stat-icon { font-size: 1.3rem; color: var(--m-accent); margin-bottom: 8px; }
-.member-page .stat-card .stat-value { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--m-text-main); }
+.member-page .stat-card .stat-value { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--river-deep); font-family: 'Baloo Da 2'; }
 .member-page .stat-card .stat-label { font-size: 0.85rem; color: var(--m-text-sub); margin-top: 4px; }
 @media (max-width: 700px) { .member-page .stats-grid { grid-template-columns: repeat(2, 1fr); } }
 
@@ -208,14 +210,14 @@
 .member-page .controls-container {
   position: sticky; top: 10px; z-index: 50;
   display: flex; gap: 10px; margin-bottom: 10px;
-  background: rgba(10, 15, 30, 0.6);
+  background: rgba(251, 245, 233, 0.85);
   backdrop-filter: blur(14px);
   padding: 10px;
   border-radius: var(--m-radius-md);
   border: 1px solid var(--m-glass-border);
 }
 .member-page .search-bar, .member-page .category-filter {
-  background: var(--m-glass-bg);
+  background: var(--white);
   border: 1px solid var(--m-glass-border);
   color: var(--m-text-main);
   padding: 12px 16px;
@@ -226,10 +228,10 @@
   transition: var(--m-transition);
 }
 .member-page .search-bar { flex-grow: 1; }
-.member-page .search-bar:focus, .member-page .category-filter:focus { border-color: rgba(0, 210, 255, 0.5); box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.12); }
+.member-page .search-bar:focus, .member-page .category-filter:focus { border-color: rgba(193, 99, 47, 0.5); box-shadow: 0 0 0 3px rgba(193, 99, 47, 0.12); }
 .member-page .search-bar::placeholder { color: var(--m-text-sub); }
-.member-page .category-filter { width: 170px; cursor: pointer; background-color: var(--m-surface); }
-.member-page .category-filter option { background-color: var(--m-surface); color: #fff; }
+.member-page .category-filter { width: 170px; cursor: pointer; }
+.member-page .category-filter option { background-color: var(--white); color: var(--m-text-main); }
 .member-page .result-count { color: var(--m-text-sub); font-size: 0.85rem; margin: 4px 4px 20px; }
 @media (max-width: 560px) {
   .member-page .controls-container { flex-wrap: wrap; }
@@ -241,13 +243,12 @@
 .member-page .member-scroll-box {
   width: min(480px, 100%);
   height: 560px;
-  background: var(--m-glass-bg);
-  backdrop-filter: blur(16px);
+  background: var(--white);
   border: 1px solid var(--m-glass-border);
   border-radius: var(--m-radius-lg);
   overflow: hidden;
   position: relative;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 30px 60px rgba(14, 59, 54, 0.14);
   cursor: grab;
   touch-action: none;
   user-select: none;
@@ -258,8 +259,8 @@
 .member-page .member-scroll-box::before, .member-page .member-scroll-box::after {
   content: ''; position: absolute; left: 0; width: 100%; height: 60px; z-index: 10; pointer-events: none;
 }
-.member-page .member-scroll-box::before { top: 0; background: linear-gradient(to bottom, var(--m-bg), transparent); }
-.member-page .member-scroll-box::after { bottom: 0; background: linear-gradient(to top, var(--m-bg), transparent); }
+.member-page .member-scroll-box::before { top: 0; background: linear-gradient(to bottom, var(--white), transparent); }
+.member-page .member-scroll-box::after { bottom: 0; background: linear-gradient(to top, var(--white), transparent); }
 
 .member-page .scroll-wrapper { display: flex; flex-direction: column; gap: 16px; padding: 20px; width: 100%; will-change: transform; }
 .member-page .scroll-wrapper:hover .member-card:not(:hover) { opacity: 0.55; filter: blur(0.5px); transform: scale(0.985); }
@@ -271,18 +272,18 @@
 @media (max-width: 620px) { .member-page .scroll-controls { right: 6px; } }
 
 .member-page .scroll-btn {
-  background: var(--m-glass-bg);
+  background: var(--white);
   border: 1px solid var(--m-glass-border);
   color: var(--m-accent);
   width: 46px; height: 46px;
   border-radius: 50%;
   cursor: pointer;
-  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 16px rgba(14, 59, 54, 0.1);
   transition: var(--m-transition);
   display: flex; justify-content: center; align-items: center;
   font-size: 1.15rem;
 }
-.member-page .scroll-btn:hover { background: var(--m-accent); color: #0f172a; box-shadow: 0 5px 15px rgba(0, 210, 255, 0.3); }
+.member-page .scroll-btn:hover { background: var(--m-accent); color: var(--white); box-shadow: 0 5px 15px rgba(193, 99, 47, 0.3); }
 .member-page .scroll-btn:active { transform: scale(0.94); }
 
 .member-page .frame-hint {
@@ -297,7 +298,7 @@
 /* ---------- মেম্বার কার্ড ---------- */
 .member-page .member-card {
   display: flex; align-items: center;
-  background: var(--m-glass-bg);
+  background: var(--white);
   border: 1px solid var(--m-glass-border);
   border-radius: var(--m-radius-md);
   padding: 16px;
@@ -305,10 +306,10 @@
   transition: var(--m-transition);
 }
 .member-page .member-card:hover, .member-page .member-card:focus-visible {
-  background: var(--m-glass-hover);
+  background: var(--rice-2);
   transform: translateY(-4px) scale(1.02);
-  border-color: rgba(0, 210, 255, 0.4);
-  box-shadow: 0 12px 24px rgba(0, 210, 255, 0.15);
+  border-color: rgba(193, 99, 47, 0.35);
+  box-shadow: 0 12px 24px rgba(14, 59, 54, 0.12);
   outline: none;
   z-index: 2;
 }
@@ -318,19 +319,19 @@
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid transparent;
-  background: linear-gradient(var(--m-bg), var(--m-bg)) padding-box,
+  background: linear-gradient(var(--white), var(--white)) padding-box,
               linear-gradient(45deg, var(--m-accent), var(--m-accent-2)) border-box;
 }
 .member-page .status-dot {
   position: absolute; bottom: 2px; right: 2px; width: 14px; height: 14px;
-  border-radius: 50%; border: 2px solid var(--m-bg-soft); z-index: 5; box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  border-radius: 50%; border: 2px solid var(--white); z-index: 5; box-shadow: 0 0 5px rgba(14,59,54,0.3);
 }
 .member-page .verified-badge {
   position: absolute; top: -3px; right: -3px; color: var(--m-accent); font-size: 0.85rem;
-  background: var(--m-bg-soft); border-radius: 50%; line-height: 1;
+  background: var(--white); border-radius: 50%; line-height: 1;
 }
 .member-page .member-info { flex-grow: 1; min-width: 0; }
-.member-page .member-info h3 { font-size: 1.05rem; color: var(--m-text-main); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.member-page .member-info h3 { font-size: 1.05rem; color: var(--river-deep); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .member-page .member-info p { margin-top: 4px; font-size: 0.83rem; color: var(--m-text-sub); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .member-page .arrow-icon { color: var(--m-accent); font-size: 1.1rem; opacity: 0; transform: translateX(-10px); transition: all 0.3s ease; flex-shrink: 0; margin-left: 8px; }
 .member-page .member-card:hover .arrow-icon { opacity: 1; transform: translateX(0); }
@@ -338,8 +339,8 @@
 /* ---------- মোডাল ---------- */
 .member-page .modal-overlay {
   position: fixed; inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
+  background: rgba(14, 59, 54, 0.55);
+  backdrop-filter: blur(6px);
   display: flex; justify-content: center; align-items: center;
   z-index: 9999;
   opacity: 0; visibility: hidden;
@@ -348,13 +349,13 @@
 }
 .member-page .modal-overlay.active { opacity: 1; visibility: visible; }
 .member-page .modal-content {
-  background: var(--m-surface);
+  background: var(--white);
   padding: 36px 26px 28px;
   border-radius: var(--m-radius-lg);
   width: 360px; max-width: 100%;
   text-align: center;
   border: 1px solid var(--m-glass-border);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.55);
+  box-shadow: 0 25px 60px rgba(14,59,54,0.3);
   transform: scale(0.9) translateY(20px);
   transition: var(--m-transition);
   position: relative;
@@ -364,58 +365,58 @@
 .member-page .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
 .member-page .modal-content img {
   width: 104px; height: 104px; border-radius: 50%; object-fit: cover; border: 3px solid transparent;
-  background: linear-gradient(var(--m-surface), var(--m-surface)) padding-box,
+  background: linear-gradient(var(--white), var(--white)) padding-box,
               linear-gradient(45deg, var(--m-accent), var(--m-accent-2)) border-box;
   margin: 0 auto 14px;
 }
-.member-page .modal-content h2 { color: var(--m-text-main); font-size: 1.3rem; margin-bottom: 4px; }
+.member-page .modal-content h2 { color: var(--river-deep); font-size: 1.3rem; margin-bottom: 4px; }
 .member-page .modal-content h4 { color: var(--m-accent); font-weight: 400; font-size: 0.95rem; margin-bottom: 6px; }
 .member-page .modal-status { font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 14px; }
 .member-page .modal-content p { color: var(--m-text-sub); font-size: 0.9rem; line-height: 1.65; margin-bottom: 18px; }
 .member-page .social-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 22px; }
 .member-page .social-links a {
-  color: var(--m-text-main); font-size: 1.15rem;
+  color: var(--river-deep); font-size: 1.15rem;
   width: 42px; height: 42px;
   display: flex; justify-content: center; align-items: center;
-  background: rgba(255,255,255,0.05); border-radius: 50%;
+  background: var(--rice-2); border-radius: 50%;
   transition: 0.3s;
   border: 1px solid var(--m-glass-border);
 }
-.member-page .social-links a:hover { background: var(--m-accent); color: #0f172a; transform: translateY(-3px); }
+.member-page .social-links a:hover { background: var(--m-accent); color: var(--white); transform: translateY(-3px); }
 .member-page .close-btn {
   padding: 11px 24px;
-  background: linear-gradient(45deg, var(--m-accent), var(--m-accent-2));
-  border: none; border-radius: 12px; color: #fff;
+  background: var(--rice-2);
+  border: 1px solid var(--m-glass-border); border-radius: 12px; color: var(--river-deep);
   font-weight: 600; cursor: pointer; width: 100%;
   transition: 0.3s;
 }
-.member-page .close-btn:hover { box-shadow: 0 8px 15px rgba(0, 210, 255, 0.3); }
+.member-page .close-btn:hover { background: var(--m-glass-hover); }
 .member-page .modal-close-icon {
   position: absolute; top: 14px; right: 18px;
   color: var(--m-text-sub); cursor: pointer; font-size: 1.5rem; transition: 0.2s; line-height: 1;
 }
-.member-page .modal-close-icon:hover { color: #ff4757; }
+.member-page .modal-close-icon:hover { color: var(--clay-dark); }
 .member-page .modal-id-btn {
-  background: linear-gradient(45deg, #1e3c72, #2a5298);
-  color: white; border: none; padding: 10px 20px;
+  background: linear-gradient(45deg, var(--river-deep), var(--river-deep-2));
+  color: var(--white); border: none; padding: 10px 20px;
   font-family: 'Hind Siliguri', sans-serif; font-size: 14px; font-weight: 600;
   border-radius: 50px; cursor: pointer; transition: 0.3s;
   display: inline-block; margin: 14px 0 4px;
-  box-shadow: 0 4px 15px rgba(30, 60, 114, 0.3);
+  box-shadow: 0 4px 15px rgba(14, 59, 54, 0.3);
 }
-.member-page .modal-id-btn:hover { background: linear-gradient(45deg, #2a5298, #1e3c72); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(30, 60, 114, 0.4); }
+.member-page .modal-id-btn:hover { background: linear-gradient(45deg, var(--river-deep-2), var(--river-deep)); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(14, 59, 54, 0.4); }
 
 /* ---------- স্ক্রল-টু-টপ ---------- */
 .member-page .scroll-top-btn {
   position: fixed; bottom: 26px; right: 22px;
   width: 48px; height: 48px; border-radius: 50%;
   background: linear-gradient(45deg, var(--m-accent), var(--m-accent-2));
-  color: #04121c; border: none;
+  color: var(--white); border: none;
   display: flex; align-items: center; justify-content: center;
   font-size: 1.1rem; cursor: pointer; z-index: 400;
   opacity: 0; pointer-events: none; transform: translateY(15px);
   transition: var(--m-transition);
-  box-shadow: 0 10px 25px rgba(0, 210, 255, 0.35);
+  box-shadow: 0 10px 25px rgba(193, 99, 47, 0.35);
 }
 .member-page .scroll-top-btn.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
 .member-page .scroll-top-btn:hover { transform: translateY(-4px); }
@@ -426,9 +427,9 @@
   color: var(--m-text-sub); font-size: 0.85rem;
   border-top: 1px solid var(--m-glass-border);
 }
-.member-page .member-foot strong { color: var(--m-text-main); }
+.member-page .member-foot strong { color: var(--river-deep); }
 
-/* ---------- হালকা স্নো পার্টিকেল ব্যাকগ্রাউন্ড ---------- */
+/* ---------- হালকা পার্টিকেল ব্যাকগ্রাউন্ড ---------- */
 .member-page #member-snow {
   position: fixed !important;
   top: 0 !important; left: 0 !important;
@@ -440,4 +441,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .member-page * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+@media (max-width: 520px) {
+  .member-page { padding-top: 105px; }
 }
