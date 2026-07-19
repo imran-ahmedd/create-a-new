@@ -1,6 +1,7 @@
 /* ভাসমান স্মার্ট ফিডব্যাক বাটন + Firestore-ভিত্তিক রিভিউ সিস্টেম
    (ডোনেশন পেজের মতোই সম্পূর্ণ জাভাস্ক্রিপ্ট দিয়ে তৈরি — index.html-এ শুধু #feedback-root, কোনো HTML নেই)
-   নিজের রিভিউ শনাক্ত হয় ইমেইল দিয়ে (আলাদা লগইন সিস্টেম নেই) */
+   ডেটা স্কিম আগের রিভিউ পেজের সাথে মিলিয়ে রাখা হয়েছে: userName, userEmail, comment, rating, timestamp
+   (যাতে আগে যারা রিভিউ দিয়েছেন তাদের নাম-মতামত ঠিকভাবে দেখা যায়) */
 window.RJF = window.RJF || {};
 
 RJF.feedbackData = {
@@ -23,6 +24,11 @@ RJF._fbState = {
   rating: 0,
   unsubscribe: null
 };
+
+/* --- আগের ও নতুন দুই ধরনের ফিল্ড নাম থেকেই সঠিক ভ্যালু বের করা (ব্যাকওয়ার্ড কম্প্যাটিবিলিটি) --- */
+RJF._fbReviewName = function (r) { return r.userName || r.name || 'নামহীন'; };
+RJF._fbReviewEmail = function (r) { return r.userEmail || r.email || ''; };
+RJF._fbReviewText = function (r) { return r.comment || r.message || ''; };
 
 /* Firebase compat SDK একবারই লোড হবে */
 RJF._loadFirebase = function (cb) {
@@ -167,34 +173,42 @@ RJF._wireFeedback = function () {
     deleteBtn.style.display = 'none';
   }
 
-  /* ইমেইল দিয়ে নিজের আগের রিভিউ খুঁজে বের করা (এডিট মোডে ঢোকানোর জন্য) */
-  var emailCheckTimer = null;
+  /* ইমেইল দিয়ে নিজের আগের রিভিউ খুঁজে বের করা — আগে যেসব রিভিউ ইতিমধ্যে লোড হয়ে গেছে (st.docs)
+     তার মধ্যেই খোঁজা হয়, তাই পুরনো (userEmail) ও নতুন (email) দুই ধরনের ডেটাতেই কাজ করে */
+  function findExistingByEmail(email) {
+    var lower = email.toLowerCase();
+    for (var i = 0; i < st.docs.length; i++) {
+      var r = st.docs[i];
+      var rEmail = RJF._fbReviewEmail(r).toLowerCase();
+      if (rEmail === lower) return r;
+    }
+    return null;
+  }
+
   emailInp.addEventListener('blur', function () {
-    var email = emailInp.value.trim().toLowerCase();
+    var email = emailInp.value.trim();
     var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) return;
 
     RJF._loadFirebase(function () {
-      var db = RJF._getDb();
-      db.collection(d.collectionName).where('emailLower', '==', email).limit(1).get()
-        .then(function (snap) {
-          if (snap.empty) {
-            st.existingId = null;
-            submitBtn.textContent = 'জমা দিন';
-            deleteBtn.style.display = 'none';
-            return;
-          }
-          var doc = snap.docs[0];
-          var data = doc.data();
-          st.existingId = doc.id;
-          nameInp.value = data.name || '';
-          msgInp.value = data.message || '';
-          setRating(data.rating || 0);
+      RJF._fbSubscribeReviews(); /* নিশ্চিত করা যে রিভিউ লোড হয়েছে */
+      var tryFind = function () {
+        var match = findExistingByEmail(email);
+        if (match) {
+          st.existingId = match.id;
+          nameInp.value = RJF._fbReviewName(match);
+          msgInp.value = RJF._fbReviewText(match);
+          setRating(match.rating || 0);
           submitBtn.textContent = 'আপডেট করুন';
           deleteBtn.style.display = 'inline-flex';
           RJF._fbShowToast('আপনার আগের রিভিউ পাওয়া গেছে, চাইলে এডিট করুন', false);
-        })
-        .catch(function () { /* নেটওয়ার্ক সমস্যা হলে চুপচাপ থাকা, ফর্ম ব্যবহারযোগ্য থাকবে */ });
+        } else {
+          st.existingId = null;
+          submitBtn.textContent = 'জমা দিন';
+          deleteBtn.style.display = 'none';
+        }
+      };
+      if (st.docs.length) { tryFind(); } else { setTimeout(tryFind, 700); }
     });
   });
 
@@ -229,12 +243,12 @@ RJF._wireFeedback = function () {
 
     RJF._loadFirebase(function () {
       var db = RJF._getDb();
+      /* পুরনো রিভিউ পেজের সাথে মিলিয়ে একই ফিল্ড নাম ব্যবহার করা হচ্ছে (userName, userEmail, comment) */
       var payload = {
-        name: name,
-        email: email,
-        emailLower: email.toLowerCase(),
+        userName: name,
+        userEmail: email,
         rating: st.rating,
-        message: message,
+        comment: message,
         timestamp: window.firebase.firestore.FieldValue.serverTimestamp()
       };
 
@@ -279,7 +293,7 @@ RJF._wireFeedback = function () {
     var sum = 0;
     var counts = [0, 0, 0, 0, 0];
     docs.forEach(function (r) {
-      sum += r.rating;
+      sum += (r.rating || 0);
       if (r.rating >= 1 && r.rating <= 5) counts[r.rating - 1]++;
     });
     var avg = (sum / total).toFixed(1);
@@ -305,7 +319,9 @@ RJF._wireFeedback = function () {
     /* --- রিভিউ লিস্ট --- */
     var visible = docs.slice(0, st.visibleCount);
     reviewsBox.innerHTML = visible.map(function (r) {
-      var initial = (r.name || '?').trim().charAt(0).toUpperCase();
+      var name = RJF._fbReviewName(r);
+      var text = RJF._fbReviewText(r);
+      var initial = name.trim().charAt(0).toUpperCase() || '?';
       var dateStr = '';
       if (r.timestamp && r.timestamp.toDate) {
         dateStr = r.timestamp.toDate().toLocaleDateString('bn-BD', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -315,11 +331,11 @@ RJF._wireFeedback = function () {
           '<div class="fb-review-top">' +
             '<div class="fb-review-avatar">' + initial + '</div>' +
             '<div class="fb-review-namebox">' +
-              '<span class="fb-review-name">' + RJF._escapeHtml(r.name) + '</span>' +
+              '<span class="fb-review-name">' + RJF._escapeHtml(name) + '</span>' +
               '<span class="fb-review-stars">' + RJF._fbStarsHtml(r.rating, 'sm') + '</span>' +
             '</div>' +
           '</div>' +
-          '<p class="fb-review-text">' + RJF._escapeHtml(r.message) + '</p>' +
+          '<p class="fb-review-text">' + RJF._escapeHtml(text) + '</p>' +
           (dateStr ? '<small class="fb-review-date">' + dateStr + '</small>' : '') +
         '</div>'
       );
