@@ -70,3 +70,68 @@
   box-shadow:var(--shadow);
 }
 .fb-toast.show{ opacity:1; transform:translate(-50%,0); }
+.fb-toast.fb-toast-error{ background:#B3402A; }
+
+.hidden{ display:none !important; }
+
+/* --- এভারেজ রেটিং সামারি --- */
+.fb-summary{
+  display:flex; gap:18px; background:var(--rice-2); border:1px solid #E1D9C7; border-radius:14px;
+  padding:16px; margin-bottom:20px; align-items:center; flex-wrap:wrap;
+}
+.fb-summary-score{ text-align:center; flex:0 0 auto; min-width:80px; }
+.fb-summary-score span{ display:block; font-size:2rem; font-weight:700; color:var(--river-deep); line-height:1; }
+.fb-summary-stars{ display:flex; justify-content:center; gap:2px; margin:6px 0 4px; }
+.fb-summary-stars span svg{ width:14px; height:14px; color:#DBD2BE; }
+.fb-summary-stars span.on svg{ color:var(--turmeric); }
+.fb-summary-score small{ color:#5c655f; font-size:.76rem; font-weight:600; }
+.fb-summary-bars{ flex:1; min-width:150px; display:flex; flex-direction:column; gap:6px; }
+.fb-bar-row{ display:flex; align-items:center; gap:8px; font-size:.76rem; color:var(--ink); }
+.fb-bar-label{ display:flex; align-items:center; gap:3px; min-width:28px; }
+.fb-bar-label svg{ color:var(--turmeric); }
+.fb-bar-track{ flex:1; height:7px; background:#E1D9C7; border-radius:6px; overflow:hidden; }
+.fb-bar-fill{ display:block; height:100%; background:var(--moss); border-radius:6px; transition:width .5s ease; }
+.fb-bar-pct{ min-width:30px; text-align:right; color:#5c655f; }
+
+.fb-hint{ display:block; font-size:.74rem; color:#5c655f; font-weight:400; margin-top:4px; }
+
+.fb-form-actions{ display:flex; gap:10px; margin-top:6px; }
+.fb-form-actions .fb-submit{ margin-top:0; }
+.fb-delete{
+  flex:0 0 auto; background:var(--white); color:#B3402A; border:1.5px solid #E7C6BC;
+  padding:13px 16px; border-radius:12px; font-weight:600; font-size:.9rem; transition:background .2s ease;
+}
+.fb-delete:hover{ background:#FBEDEA; }
+
+.fb-divider{
+  text-align:center; color:#5c655f; font-weight:600; font-size:.85rem;
+  margin:24px 0 14px; position:relative;
+}
+.fb-divider::before, .fb-divider::after{ content:''; position:absolute; top:50%; width:32%; border-top:1.5px solid #E1D9C7; }
+.fb-divider::before{ left:0; }
+.fb-divider::after{ right:0; }
+
+.fb-reviews{ display:flex; flex-direction:column; gap:12px; }
+.fb-empty{ text-align:center; color:#5c655f; font-size:.88rem; padding:10px 0; }
+
+.fb-review-item{
+  background:var(--white); border:1px solid #E1D9C7; border-radius:14px; padding:14px 16px;
+}
+.fb-review-top{ display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+.fb-review-avatar{
+  width:34px; height:34px; border-radius:50%; background:var(--river-deep); color:var(--white);
+  display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.9rem; flex-shrink:0;
+}
+.fb-review-namebox{ display:flex; flex-direction:column; min-width:0; }
+.fb-review-name{ font-weight:600; color:var(--ink); font-size:.92rem; word-break:break-word; }
+.fb-review-stars{ display:flex; gap:1px; margin-top:2px; }
+.fb-review-stars .fb-star-sm svg{ width:11px; height:11px; color:#DBD2BE; }
+.fb-review-stars .fb-star-sm.on svg{ color:var(--turmeric); }
+.fb-review-text{ font-size:.9rem; color:var(--ink); line-height:1.6; margin:0; }
+.fb-review-date{ display:block; margin-top:8px; font-size:.72rem; color:#8a9187; }
+
+.fb-load-more{
+  display:block; margin:16px auto 0; background:none; border:1.5px solid #E1D9C7; color:var(--river-deep);
+  padding:9px 20px; border-radius:20px; font-weight:600; font-size:.85rem; transition:.2s;
+}
+.fb-load-more:hover{ border-color:var(--moss); }
