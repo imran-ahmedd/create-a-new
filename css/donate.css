@@ -45,6 +45,7 @@
 
 .donate-page {
   margin: 0;
+  padding-top: 130px;
   font-family: var(--font-body);
   background: var(--cream);
   color: var(--ink);
@@ -52,6 +53,7 @@
   -webkit-font-smoothing: antialiased;
   transition: background 0.4s ease, color 0.4s ease;
 }
+@media (max-width: 520px) { .donate-page { padding-top: 105px; } }
 
 .donate-page a { color: inherit; }
 
@@ -639,8 +641,8 @@ footer {
 .donate-page .amount-options { flex-wrap: wrap; }
 }
 
-/* মূল সাইটের ফিক্সড ন্যাভবার-এর জন্য উপরে জায়গা, আর "মূল পাতায় ফিরুন" লিংকের পাশে মার্জিন */
+/* "মূল পাতায় ফিরুন" লিংকের পাশে মার্জিন — উপরের জায়গাটা এখন .donate-page-এর নিজের padding-top থেকেই আসে */
 .donate-page > .legal-back {
   display: inline-flex;
-  margin: 110px 6vw 0;
+  margin: 0 6vw 22px;
 }
