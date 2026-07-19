@@ -13,6 +13,7 @@ RJF.data = {
     { label: "পরিচিতি", href: "#porichiti" },
     { label: "সম্পর্কে", href: "#somporke" },
     { label: "অবস্থান", href: "#অবস্থান" },
+    { label: "সদস্যবৃন্দ", href: "#/member" },
     { label: "দান করুন", href: "#/donate" }
   ],
 
@@ -71,6 +72,7 @@ RJF.data = {
       { label: "পরিচিতি", href: "#porichiti" },
       { label: "সম্পর্কে", href: "#somporke" },
       { label: "অবস্থান", href: "#অবস্থান" },
+      { label: "সদস্যবৃন্দ", href: "#/member" },
       { label: "দান করুন", href: "#/donate" }
     ],
     legalLinks: [
