@@ -15,17 +15,22 @@ RJF.renderHome = function () {
 RJF.route = function () {
   var hash = window.location.hash;
   var legalKey = hash === '#/privacy' ? 'privacy' : hash === '#/terms' ? 'terms' : null;
+  var isDonate = hash === '#/donate';
   var legalRoot = document.getElementById('legal-root');
+  var donateRoot = document.getElementById('donate-root');
 
-  if (legalKey) {
+  if (legalKey || isDonate) {
     RJF.HOME_ROOTS.forEach(function (id) {
       var el = document.getElementById(id);
       if (el) el.hidden = true;
     });
-    if (legalRoot) {
-      legalRoot.hidden = false;
-      RJF.renderLegalPage(legalKey);
-    }
+
+    if (legalRoot) legalRoot.hidden = !legalKey;
+    if (donateRoot) donateRoot.hidden = !isDonate;
+
+    if (legalKey) RJF.renderLegalPage(legalKey);
+    if (isDonate) RJF.renderDonatePage();
+
     window.scrollTo(0, 0);
     return;
   }
@@ -35,6 +40,7 @@ RJF.route = function () {
     if (el) el.hidden = false;
   });
   if (legalRoot) legalRoot.hidden = true;
+  if (donateRoot) donateRoot.hidden = true;
 
   if (hash.length > 1 && hash.indexOf('#/') !== 0) {
     var target = document.getElementById(decodeURIComponent(hash.slice(1)));
