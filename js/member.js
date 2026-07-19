@@ -133,7 +133,7 @@ RJF._wireMemberPage = function () {
   }
 
   function memberCardHtml(member) {
-    var statusColor = member.status === 'active' ? '#10b981' : '#f59e0b';
+    var statusColor = member.status === 'active' ? '#7A9B6E' : '#C1632F';
     var statusLabel = member.status === 'active' ? 'সক্রিয়' : 'নিষ্ক্রিয়';
     var verifiedBadge = (member.memberid && member.memberid.trim() !== '')
       ? '<span class="verified-badge" title="ভেরিফাইড সদস্য"><i class="fa-solid fa-circle-check"></i></span>'
@@ -236,7 +236,7 @@ RJF._wireMemberPage = function () {
     var statusBadge = document.getElementById('modal-status');
     var isActive = member.status === 'active';
     statusBadge.innerText = isActive ? '● সক্রিয় সদস্য' : '● নিষ্ক্রিয় সদস্য';
-    statusBadge.style.color = isActive ? '#10b981' : '#f59e0b';
+    statusBadge.style.color = isActive ? '#7A9B6E' : '#C1632F';
 
     var memberIdBtn = document.getElementById('modal-memberid');
     var memberLink = document.getElementById('modal-member-link');
@@ -491,7 +491,7 @@ RJF._wireMemberPage = function () {
     Particle.prototype.draw = function () {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(180, 225, 255,' + this.opacity + ')';
+      ctx.fillStyle = 'rgba(227, 167, 62,' + this.opacity + ')';
       ctx.fill();
     };
 
