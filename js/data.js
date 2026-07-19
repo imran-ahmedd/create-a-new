@@ -12,7 +12,8 @@ RJF.data = {
     { label: "হোম", href: "#hero" },
     { label: "পরিচিতি", href: "#porichiti" },
     { label: "সম্পর্কে", href: "#somporke" },
-    { label: "অবস্থান", href: "#অবস্থান" }
+    { label: "অবস্থান", href: "#অবস্থান" },
+    { label: "দান করুন", href: "#/donate" }
   ],
 
   hero: {
@@ -69,7 +70,8 @@ RJF.data = {
       { label: "হোম", href: "#hero" },
       { label: "পরিচিতি", href: "#porichiti" },
       { label: "সম্পর্কে", href: "#somporke" },
-      { label: "অবস্থান", href: "#অবস্থান" }
+      { label: "অবস্থান", href: "#অবস্থান" },
+      { label: "দান করুন", href: "#/donate" }
     ],
     legalLinks: [
       { label: "প্রাইভেসি পলিসি", href: "#/privacy" },
